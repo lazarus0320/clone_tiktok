@@ -14,7 +14,7 @@ class LoginScreen extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          const Text(
+          Text(
             'Tiktok Clone',
             style: TextStyle(
               fontSize: 35,
@@ -51,6 +51,7 @@ class LoginScreen extends StatelessWidget {
               controller: _passwordController,
               labelText: 'Password',
               icon: Icons.lock,
+              isObscure: true,
             ),
           ),
           const SizedBox(
@@ -59,16 +60,17 @@ class LoginScreen extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width - 40,
             height: 50,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: buttonColor,
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(5),
               ),
             ),
             child: InkWell(
-              onTap: () {
-                print('login user');
-              },
+              onTap: () => authController.loginUser(
+                _emailController.text,
+                _passwordController.text,
+              ),
               child: const Center(
                 child: Text('Login',
                     style: TextStyle(
