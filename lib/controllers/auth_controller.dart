@@ -64,7 +64,8 @@ class AuthController extends GetxController {
       Get.snackbar('Profile Picture',
           'You have successfully selected your profile picture!');
     }
-    _pickedImage = Rx<File?>(File(pickedImage!.path));
+    // _pickedImage = Rx<File?>(File(pickedImage!.path));
+    _pickedImage.value = File(pickedImage!.path);
     // _pickedImage = File(pickedImage!.path);
   }
 

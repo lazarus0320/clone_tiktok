@@ -2,6 +2,7 @@ import 'package:clone_tiktok/constant.dart';
 import 'package:clone_tiktok/controllers/auth_controller.dart';
 import 'package:clone_tiktok/views/widgets/text_input_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
@@ -35,12 +36,23 @@ class SignupScreen extends StatelessWidget {
             height: 25,
           ),
           Stack(children: [
-            const CircleAvatar(
-              radius: 64,
-              backgroundImage: NetworkImage(
-                  'https://img.freepik.com/free-icon/user_318-563642.jpg'),
-              backgroundColor: Colors.black,
-            ),
+            Obx(() {
+              if (authController.profilePhoto != null) {
+                return CircleAvatar(
+                  radius: 64,
+                  backgroundImage: FileImage(authController.profilePhoto!),
+                  backgroundColor: Colors.black,
+                );
+              } else {
+                return CircleAvatar(
+                  radius: 64,
+                  backgroundImage: NetworkImage(
+                    'https://img.freepik.com/free-icon/user_318-563642.jpg',
+                  ),
+                  backgroundColor: Colors.black,
+                );
+              }
+            }),
             Positioned(
               bottom: -10,
               left: 80,
